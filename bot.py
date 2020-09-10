@@ -1,13 +1,11 @@
 # bot.py
 import os
 import random
-from dotenv import load_dotenv
 import discord
 from discord.ext import commands
 
-load_dotenv()
-TOKEN = os.getenv('DISCORD_TOKEN')
-GUILD = os.getenv('DISCORD_GUILD')
+TOKEN = 'NzQ5MjgwNTgyMDcyMTM5ODk3.X0pr6w.Mxf4VKS5MM7k4pICO-k892uuaXE'
+GUILD = 'mafia alpha'
 
 #roles
 Vill_id=750618635441274971

@@ -9,6 +9,7 @@ end
 nit
 day
 kill
+dvot
 
 godfather
 mafia
@@ -18,6 +19,7 @@ vigil
 bullet
 lp
 fool
+godvot
 
 
 mk

@@ -807,7 +807,3 @@ async def fool(ctx,mem:discord.ext.commands.MemberConverter):
 
 
 client.run(TOKEN)
-
-
-
-#need help in nit and day deafining

@@ -520,7 +520,7 @@ async def mk(ctx,mem:discord.ext.commands.MemberConverter):
     if f==0:
         await ctx.send('Not usable by you!!')
     if k==1:
-        await ctx.send('How 🇩🇦🇷🇪 you kill the Organiser')
+        await ctx.send('How :regional_indicator_d::regional_indicator_a::regional_indicator_r::regional_indicator_e: you kill the Organiser')
     elif mf==1:
         kil.append(mem)
         mf=0
@@ -544,7 +544,7 @@ async def check(ctx,mem:discord.ext.commands.MemberConverter):
     if f==0:
         await ctx.send('Not usable by you!!')
     if k==1:
-        await ctx.send('How 🇩🇦🇷🇪 you check the Organiser')
+        await ctx.send('How :regional_indicator_d::regional_indicator_a::regional_indicator_r::regional_indicator_e: you check the Organiser')
     elif my==1:
         mcheck=mem
         my=0
@@ -576,7 +576,7 @@ async def heal(ctx,mem:discord.ext.commands.MemberConverter):
     if f==0:
         await ctx.send('Not usable by you!!')
     if k==1:
-        await ctx.send('How 🇳🇮🇨🇪 of you to heal the Organiser,\n But no thanks, choose a fellow Villager')
+        await ctx.send('How :regional_indicator_n::regional_indicator_i::regional_indicator_c::regional_indicator_e: of you to heal the Organiser,\n But no thanks, choose a fellow Villager')
     elif nu==1:
         nheal=mem.id
         nhel=mem
@@ -602,7 +602,7 @@ async def vk(ctx,mem:discord.ext.commands.MemberConverter):
     if f==0:
         await ctx.send('Not usable by you!!')
     if k==1:
-        await ctx.send('How 🇩🇦🇷🇪 you kill the Organiser')
+        await ctx.send('How :regional_indicator_d::regional_indicator_a::regional_indicator_r::regional_indicator_e: you kill the Organiser')
     elif vi==1:
         if vig_kc>0:
             vkill=mem.id

@@ -323,7 +323,7 @@ async def nit(ctx):
         nt=1
         mf=my=nu=vi=1
         await cvill.send(f'{Vill.mention} night time has fallen')
-        await cmaf.send('Mafia, whom do u choose to kill?')
+        await cmaf.send('Mafia, whom do u choose to kill?\n The people living are: \n')
         await cn.send('Nurse, whom do u wanna choose to save?')
         await cvig.send(f'Vigilante, whom do u wanna kill\nYou have {vig_kc} bullets left..')
         await cm.send('Mayor, whom do u wanna check?')
@@ -331,6 +331,7 @@ async def nit(ctx):
             await x.move_to(vnit)
         for x in Vill.members:
             await cvill.set_permissions(x,send_messages=False)
+            await cmaf.send(f'{x.mention}')
     else:
         await ctx.send(f'{member.mention} , only organisers can use the command')
 
@@ -474,8 +475,8 @@ async def dvot(ctx):
     mes=None
     member=ctx.message.author
     global emoji
-    for x in Org.members:
-        if x==member:
+    for x in member.roles:
+        if x.id==Org_id:
             f=1
     if f==0:
         await ctx.send('Only usable by Organisers!!!')
@@ -487,28 +488,11 @@ async def dvot(ctx):
         mes=cvill.last_message 
         for x in range(0,i):
             await mes.add_reaction(emoji[x])
-        await ctx.send('poll ends in 30 secs..')
-    for i in range(29,-1):
-        time.sleep(1)
-        await mes.edit(content=f'poll ends in {i} secs..')
-
-
-# #pee
-# @client.command()
-# async def pee(ctx):
-#     i=0
-#     mes=None
-#     member=ctx.message.author
-#     Vill=discord.utils.get(member.guild.roles, id=Vill_id)
-#     cvill=discord.utils.get(member.guild.text_channels, id=cvill_id)
-#     await ctx.send('Poll:')
-#     for x in Vill.members:
-#         await ctx.send(f'{emoji[i]}:{x.mention}')
-#         i+=1
-#     mes=cvill.last_message 
-#     for x in range(0,i):
-#         await mes.add_reaction(emoji[x])
-
+        #await ctx.send('poll ends in 30 secs..')
+        # mes=cvill.last_message 
+        # for i in range(29,-1):
+        #     time.sleep(1)
+        #     await mes.edit(content=f'poll ends in {i} secs..')
 
 
 #mafia_kill

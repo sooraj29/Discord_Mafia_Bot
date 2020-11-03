@@ -1,6 +1,7 @@
 # bot.py
 import os
 import random
+import time
 import discord
 from discord.ext import commands
 
@@ -486,6 +487,11 @@ async def dvot(ctx):
         mes=cvill.last_message 
         for x in range(0,i):
             await mes.add_reaction(emoji[x])
+        await ctx.send('poll ends in 30 secs..')
+    for i in range(29,-1):
+        time.sleep(1)
+        await mes.edit(content=f'poll ends in {i} secs..')
+
 
 # #pee
 # @client.command()

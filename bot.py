@@ -5,7 +5,7 @@ import time
 import discord
 from discord.ext import commands
 
-TOKEN = 'NzQ5MjgwNTgyMDcyMTM5ODk3.X0pr6w.Mxf4VKS5MM7k4pICO-k892uuaXE'
+TOKEN = 'NzQ5MjgwNTgyMDcyMTM5ODk3.X0pr6w.PpAgdOrTwwgUHjIpNx7QFLlwkCk'
 GUILD = 'mafia alpha'
 
 #roles

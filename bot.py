@@ -301,7 +301,10 @@ async def end(ctx,a):
     else:
         await ctx.send(f'{member.mention} , only organisers can end a game')        
 
-    
+@client.command()
+async def lo(ctx):
+    for x in Vill.members:
+        await set_permissions(request_to_speak=False)    
 
 #night
 @client.command()

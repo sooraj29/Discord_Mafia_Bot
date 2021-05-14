@@ -14,12 +14,13 @@ Org_id=750618717171482694
 CH_id=750729490186895492
 killed_id=750729589877243905
 _def_id=750618365856317490
+sgame_id=842772119649255424
 Vill=None
 Org=None
 CH=None
 killed=None
 _def=None
-
+sgame=None
 gamest=0
 eventst=0
 vig_kc=0
@@ -215,7 +216,7 @@ async def event(ctx):
     CH=discord.utils.get(member.guild.roles, id=CH_id)
     killed=discord.utils.get(member.guild.roles, id=killed_id)
     _def=discord.utils.get(member.guild.roles, id=_def_id)
-
+    sgame=discord.utils.get(member.guild.stage_channels, id=sgame_id)
     cvill=discord.utils.get(member.guild.text_channels, id=cvill_id)
     cmaf=discord.utils.get(member.guild.text_channels, id=cmaf_id)
     corg=discord.utils.get(member.guild.text_channels, id=corg_id)

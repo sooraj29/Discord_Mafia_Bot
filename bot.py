@@ -305,7 +305,6 @@ async def end(ctx,a):
 async def lo(ctx):
     for x in Vill.members:
         await set_permissions(request_to_speak=False)    
-
 #night
 @client.command()
 async def nit(ctx):

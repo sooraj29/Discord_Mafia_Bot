@@ -3,7 +3,7 @@ import os
 import random
 import time
 import discord
-from discord import member
+from discord import Member
 from discord.client import Client
 from discord.ext import commands
 from discord.ext.commands.bot import Bot
@@ -113,7 +113,7 @@ async def on_ready():
 @client.event
 async def on_member_join(member):
     print(f'{member} joined the server')
-    await discord.Member.add_roles(member,_def)
+    await Member.add_roles(member,_def)
 
 @client.event
 async def on_member_remove(member):

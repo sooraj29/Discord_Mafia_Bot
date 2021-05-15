@@ -3,20 +3,25 @@ import os
 import random
 import time
 import discord
+from discord import member
+from discord.client import Client
 from discord.ext import commands
+from discord.ext.commands.bot import Bot
 
 TOKEN = 'NzQ5MjgwNTgyMDcyMTM5ODk3.X0pr6w.PpAgdOrTwwgUHjIpNx7QFLlwkCk'
 GUILD = 'mafia alpha'
+guild_id=749279965325033553
+guild=None
 
 #roles
 Vill_id=750618635441274971
 Org_id=750618717171482694
-CH_id=750729490186895492
+Ch_id=750729490186895492
 killed_id=750729589877243905
 _def_id=750618365856317490
 Vill=None
 Org=None
-CH=None
+Ch=None
 killed=None
 _def=None
 gamest=0
@@ -74,11 +79,6 @@ nt=0
 client = commands.Bot(command_prefix='!')
 
 
-
-
-
-
-
 #purge
 @client.command('purge')
 async def _purge(ctx,amount=1):
@@ -87,13 +87,33 @@ async def _purge(ctx,amount=1):
 #terminal use 
 @client.event
 async def on_ready():
+    g=client.get_guild(guild_id)
+    global eventst,Vill,Org,Ch,killed,_def,cvill,vnit,cmaf,corg,vgen,vded,clp,cf,cm,cn,cvig,vvill
+    Vill=discord.utils.get(g.roles, id=Vill_id)
+    Org=discord.utils.get(g.roles, id=Org_id)
+    Ch=discord.utils.get(g.roles, id=Ch_id)
+    killed=discord.utils.get(g.roles, id=killed_id)
+    _def=discord.utils.get(g.roles, id=_def_id)
+    sgame=discord.utils.get(g.stage_channels, id=sgame_id)
+    cvill=discord.utils.get(g.text_channels, id=cvill_id)
+    cmaf=discord.utils.get(g.text_channels, id=cmaf_id)
+    corg=discord.utils.get(g.text_channels, id=corg_id)
+    clp=discord.utils.get(g.text_channels, id=clp_id)
+    cf=discord.utils.get(g.text_channels, id=cf_id)
+    cm=discord.utils.get(g.text_channels, id=cm_id)
+    cn=discord.utils.get(g.text_channels, id=cn_id)
+    cvig=discord.utils.get(g.text_channels, id=cvig_id)
+    vvill=discord.utils.get(g.voice_channels, id=vvill_id)
+    vnit=discord.utils.get(g.voice_channels, id=vnit_id)
+    vded=discord.utils.get(g.voice_channels, id=vded_id)
+    vgen=discord.utils.get(g.voice_channels, id=vgen_id)
     print("bot has connected to Discord!")
+    print('ROles been added')
 
 @client.event
 async def on_member_join(member):
     print(f'{member} joined the server')
-    role=discord.utils.get(member.guild.roles, id=_def_id)
-    await discord.Member.add_roles(member,role)
+    await discord.Member.add_roles(member,_def)
 
 @client.event
 async def on_member_remove(member):
@@ -204,31 +224,35 @@ async def remove(ctx):
 
 
 
-
+# @client.command()
+# async def on(ctx):
+#     member=ctx.message.author
+#     global eventst,Vill,Org,Ch,killed,_def,cvill,vnit,cmaf,corg,vgen,vded,clp,cf,cm,cn,cvig,vvill
+#     Vill=discord.utils.get(member.guild.roles, id=Vill_id)
+#     Org=discord.utils.get(member.guild.roles, id=Org_id)
+#     Ch=discord.utils.get(member.guild.roles, id=Ch_id)
+#     killed=discord.utils.get(member.guild.roles, id=killed_id)
+#     _def=discord.utils.get(member.guild.roles, id=_def_id)
+#     # sgame=discord.utils.get(member.guild.stage_channels, id=sgame_id)
+#     cvill=discord.utils.get(member.guild.text_channels, id=cvill_id)
+#     cmaf=discord.utils.get(member.guild.text_channels, id=cmaf_id)
+#     corg=discord.utils.get(member.guild.text_channels, id=corg_id)
+#     clp=discord.utils.get(member.guild.text_channels, id=clp_id)
+#     cf=discord.utils.get(member.guild.text_channels, id=cf_id)
+#     cm=discord.utils.get(member.guild.text_channels, id=cm_id)
+#     cn=discord.utils.get(member.guild.text_channels, id=cn_id)
+#     cvig=discord.utils.get(member.guild.text_channels, id=cvig_id)
+#     vvill=discord.utils.get(member.guild.voice_channels, id=vvill_id)
+#     vnit=discord.utils.get(member.guild.voice_channels, id=vnit_id)
+#     vded=discord.utils.get(member.guild.voice_channels, id=vded_id)
+#     vgen=discord.utils.get(member.guild.voice_channels, id=vgen_id)
+#     await ctx.send('Roles been added')
 
 #eventmafia
 @client.command()
 async def event(ctx):
     member=ctx.message.author
-    global eventst,Vill,Org,CH,killed,_def,cvill,vnit,cmaf,corg,vgen,vded,clp,cf,cm,cn,cvig,vvill
-    Vill=discord.utils.get(member.guild.roles, id=Vill_id)
-    Org=discord.utils.get(member.guild.roles, id=Org_id)
-    CH=discord.utils.get(member.guild.roles, id=CH_id)
-    killed=discord.utils.get(member.guild.roles, id=killed_id)
-    _def=discord.utils.get(member.guild.roles, id=_def_id)
-    sgame=discord.utils.get(member.guild.stage_channels, id=sgame_id)
-    cvill=discord.utils.get(member.guild.text_channels, id=cvill_id)
-    cmaf=discord.utils.get(member.guild.text_channels, id=cmaf_id)
-    corg=discord.utils.get(member.guild.text_channels, id=corg_id)
-    clp=discord.utils.get(member.guild.text_channels, id=clp_id)
-    cf=discord.utils.get(member.guild.text_channels, id=cf_id)
-    cm=discord.utils.get(member.guild.text_channels, id=cm_id)
-    cn=discord.utils.get(member.guild.text_channels, id=cn_id)
-    cvig=discord.utils.get(member.guild.text_channels, id=cvig_id)
-    vvill=discord.utils.get(member.guild.voice_channels, id=vvill_id)
-    vnit=discord.utils.get(member.guild.voice_channels, id=vnit_id)
-    vded=discord.utils.get(member.guild.voice_channels, id=vded_id)
-    vgen=discord.utils.get(member.guild.voice_channels, id=vgen_id)
+    global eventst,Vill,Org,Ch,killed,_def,cvill,vnit,cmaf,corg,vgen,vded,clp,cf,cm,cn,cvig,vvill
     f=0
     for x in member.roles:
         if x.id==Org_id:
@@ -301,10 +325,6 @@ async def end(ctx,a):
     else:
         await ctx.send(f'{member.mention} , only organisers can end a game')        
 
-@client.command()
-async def lo(ctx):
-    for x in Vill.members:
-        await x.set_permissions(request_to_speak=False)    
 #night
 @client.command()
 async def nit(ctx):

@@ -7,6 +7,7 @@ from discord import Member
 from discord.client import Client
 from discord.ext import commands
 from discord.ext.commands.bot import Bot
+from discord import Intents
 
 TOKEN = 'NzQ5MjgwNTgyMDcyMTM5ODk3.X0pr6w.PpAgdOrTwwgUHjIpNx7QFLlwkCk'
 GUILD = 'mafia alpha'
@@ -76,7 +77,8 @@ kil=[]
 nt=0
 
 # prefix
-client = commands.Bot(command_prefix='!')
+client = commands.Bot(command_prefix='!',intents=Intents.all())
+
 
 
 #purge
@@ -94,7 +96,7 @@ async def on_ready():
     Ch=discord.utils.get(g.roles, id=Ch_id)
     killed=discord.utils.get(g.roles, id=killed_id)
     _def=discord.utils.get(g.roles, id=_def_id)
-    # sgame=discord.utils.get(g.stage_channels, id=sgame_id)
+    sgame=discord.utils.get(g.stage_channels, id=sgame_id)
     cvill=discord.utils.get(g.text_channels, id=cvill_id)
     cmaf=discord.utils.get(g.text_channels, id=cmaf_id)
     corg=discord.utils.get(g.text_channels, id=corg_id)

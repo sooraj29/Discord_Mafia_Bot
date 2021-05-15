@@ -8,8 +8,6 @@ from discord.client import Client
 from discord.ext import commands
 from discord.ext.commands.bot import Bot
 
-intents = discord.Intents.default()
-intents.members = True
 TOKEN = 'NzQ5MjgwNTgyMDcyMTM5ODk3.X0pr6w.PpAgdOrTwwgUHjIpNx7QFLlwkCk'
 GUILD = 'mafia alpha'
 guild_id=749279965325033553

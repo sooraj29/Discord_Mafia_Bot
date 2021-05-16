@@ -1,2 +1,2 @@
 git+git://github.com/Rapptz/discord.py.git
-dotenv
+git+git://github.com/theskumar/python-dotenv

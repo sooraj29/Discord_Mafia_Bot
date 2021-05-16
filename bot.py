@@ -8,11 +8,14 @@ from discord.client import Client
 from discord.ext import commands
 from discord.ext.commands.bot import Bot
 from discord import Intents
+from dotenv import load_dotenv
 
-TOKEN = 'NzQ5MjgwNTgyMDcyMTM5ODk3.X0pr6w.PpAgdOrTwwgUHjIpNx7QFLlwkCk'
-GUILD = 'mafia alpha'
-guild_id=749279965325033553
+load_dotenv()
+TOKEN = os.getenv('TOKEN')
+GUILD = os.getenv('GUILD')
+
 guild=None
+guild_id=749279965325033553
 
 #roles
 Vill_id=750618635441274971
@@ -43,12 +46,14 @@ cf_id=750730317559758998
 cm_id=750730374916734977
 cn_id=750730422966812672
 cvig_id=750730471675002982
+cgen_id=749279965325033558
 vvill_id=750730616944853134
 vnit_id=753163777201012746
 vded_id=751004767332991006
 vgen_id=751039911297155072
-sgame_id=842772119649255424
+sgame_id=843139903461392394
 cvill=None
+cgen=None
 cmaf=None
 corg=None
 clp=None
@@ -72,6 +77,15 @@ vkill=0
 fol=None
 nhel=None
 kil=[]
+test1_id=750598465632862269
+test2_id=431429131431968768
+test1=None
+test2=None
+test=[test1,test2]
+may=None
+nur=None
+v=None
+night_ct=0
 
 #nit
 nt=0
@@ -89,26 +103,30 @@ async def _purge(ctx,amount=1):
 #terminal use 
 @client.event
 async def on_ready():
-    g=client.get_guild(guild_id)
+    global guild
+    guild=client.get_guild(guild_id)
     global eventst,Vill,Org,Ch,killed,_def,cvill,vnit,cmaf,corg,vgen,vded,clp,cf,cm,cn,cvig,vvill
-    Vill=discord.utils.get(g.roles, id=Vill_id)
-    Org=discord.utils.get(g.roles, id=Org_id)
-    Ch=discord.utils.get(g.roles, id=Ch_id)
-    killed=discord.utils.get(g.roles, id=killed_id)
-    _def=discord.utils.get(g.roles, id=_def_id)
-    sgame=discord.utils.get(g.stage_channels, id=sgame_id)
-    cvill=discord.utils.get(g.text_channels, id=cvill_id)
-    cmaf=discord.utils.get(g.text_channels, id=cmaf_id)
-    corg=discord.utils.get(g.text_channels, id=corg_id)
-    clp=discord.utils.get(g.text_channels, id=clp_id)
-    cf=discord.utils.get(g.text_channels, id=cf_id)
-    cm=discord.utils.get(g.text_channels, id=cm_id)
-    cn=discord.utils.get(g.text_channels, id=cn_id)
-    cvig=discord.utils.get(g.text_channels, id=cvig_id)
-    vvill=discord.utils.get(g.voice_channels, id=vvill_id)
-    vnit=discord.utils.get(g.voice_channels, id=vnit_id)
-    vded=discord.utils.get(g.voice_channels, id=vded_id)
-    vgen=discord.utils.get(g.voice_channels, id=vgen_id)
+    Vill=discord.utils.get(guild.roles, id=Vill_id)
+    Org=discord.utils.get(guild.roles, id=Org_id)
+    Ch=discord.utils.get(guild.roles, id=Ch_id)
+    killed=discord.utils.get(guild.roles, id=killed_id)
+    _def=discord.utils.get(guild.roles, id=_def_id)
+    sgame=discord.utils.get(guild.stage_channels, id=sgame_id)
+    cvill=discord.utils.get(guild.text_channels, id=cvill_id)
+    cmaf=discord.utils.get(guild.text_channels, id=cmaf_id)
+    corg=discord.utils.get(guild.text_channels, id=corg_id)
+    clp=discord.utils.get(guild.text_channels, id=clp_id)
+    cf=discord.utils.get(guild.text_channels, id=cf_id)
+    cm=discord.utils.get(guild.text_channels, id=cm_id)
+    cn=discord.utils.get(guild.text_channels, id=cn_id)
+    cvig=discord.utils.get(guild.text_channels, id=cvig_id)
+    vvill=discord.utils.get(guild.voice_channels, id=vvill_id)
+    vnit=discord.utils.get(guild.voice_channels, id=vnit_id)
+    vded=discord.utils.get(guild.voice_channels, id=vded_id)
+    vgen=discord.utils.get(guild.voice_channels, id=vgen_id)
+    test1=discord.utils.get(guild.members, id=test1_id)
+    test2=discord.utils.get(guild.members, id=test2_id)
+    cgen=discord.utils.get(guild.text_channels, id=cgen_id)
     print("bot has connected to Discord!")
     print('ROles been added')
 
@@ -122,36 +140,21 @@ async def on_member_remove(member):
     print(f'{member} has left the server')
 
 
-
-
-
-
-
-
-
-
-
-
-    # member=ctx.member.author
-    # f=0
-    # for x in member.roles:
-    #     if x.id==Org:
-    #         f=1
-    # if f==1:
-
-    # else:
-    #     await ctx.send(f'{member.mention} , only organisers can start an game')
-
-
-
-
-
-
-
-
-
 #commands
 
+#remove_default
+@client.command()
+async def debug_on(ctx):
+    for x in _def.members:
+        if x.id!=test1_id and x.id!=test2_id:
+            await discord.Member.remove_roles(x,_def)
+
+#add_default
+@client.command()
+async def debug_off(ctx):
+    for x in guild.members:
+        if x.bot==False:
+            await discord.Member.add_roles(x,_def)
 
 #ready
 @client.command()
@@ -195,61 +198,6 @@ async def remove(ctx):
         await ctx.send(f'{member.mention}, game is already going on. Wait for it to end')
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# @client.command()
-# async def on(ctx):
-#     member=ctx.message.author
-#     global eventst,Vill,Org,Ch,killed,_def,cvill,vnit,cmaf,corg,vgen,vded,clp,cf,cm,cn,cvig,vvill
-#     Vill=discord.utils.get(member.guild.roles, id=Vill_id)
-#     Org=discord.utils.get(member.guild.roles, id=Org_id)
-#     Ch=discord.utils.get(member.guild.roles, id=Ch_id)
-#     killed=discord.utils.get(member.guild.roles, id=killed_id)
-#     _def=discord.utils.get(member.guild.roles, id=_def_id)
-#     # sgame=discord.utils.get(member.guild.stage_channels, id=sgame_id)
-#     cvill=discord.utils.get(member.guild.text_channels, id=cvill_id)
-#     cmaf=discord.utils.get(member.guild.text_channels, id=cmaf_id)
-#     corg=discord.utils.get(member.guild.text_channels, id=corg_id)
-#     clp=discord.utils.get(member.guild.text_channels, id=clp_id)
-#     cf=discord.utils.get(member.guild.text_channels, id=cf_id)
-#     cm=discord.utils.get(member.guild.text_channels, id=cm_id)
-#     cn=discord.utils.get(member.guild.text_channels, id=cn_id)
-#     cvig=discord.utils.get(member.guild.text_channels, id=cvig_id)
-#     vvill=discord.utils.get(member.guild.voice_channels, id=vvill_id)
-#     vnit=discord.utils.get(member.guild.voice_channels, id=vnit_id)
-#     vded=discord.utils.get(member.guild.voice_channels, id=vded_id)
-#     vgen=discord.utils.get(member.guild.voice_channels, id=vgen_id)
-#     await ctx.send('Roles been added')
-
 #eventmafia
 @client.command()
 async def event(ctx):
@@ -275,6 +223,7 @@ async def event(ctx):
 async def start(ctx):
     member=ctx.message.author
     f=0
+    global eventst,Vill,Org,Ch,killed,_def,cvill,vnit,cmaf,corg,vgen,vded,clp,cf,cm,cn,cvig,vvill,cgen
     global eventst
     global gamest
     for x in member.roles:
@@ -293,6 +242,8 @@ async def start(ctx):
             await ctx.send(f'{member.mention} ,start an event first using !event ')
     else:
         await ctx.send(f'{member.mention} , only organisers can start an game')
+    # for x in Vill.members:
+    #     await cgen.set_permissions(x,send_messages=False)
 
 
 #endmafia
@@ -332,15 +283,7 @@ async def end(ctx,a):
 async def nit(ctx):
     member=ctx.message.author
     f=0
-    global eventst
-    global gamest
-    global vig_kc
-    global Vill
-    global cvill
-    global cmaf
-    global cn,vnit
-    global cvig
-    global cm,nt,mf,my,nu,vi
+    global Vill,Org,Ch,killed,_def,gamest,eventst,vig_kc,mf,my,nu,vi,cvill,cgen,cmaf,corg,clp,cf,cm,cn,cvig,vvill,vnit,vded,sgame,vgen,maf,lpm,fol,may,v,night_ct,nur
     for x in member.roles:
         if x.id==Org_id:
             f=1
@@ -359,15 +302,29 @@ async def nit(ctx):
             await cmaf.send(f'{x.mention}')
     else:
         await ctx.send(f'{member.mention} , only organisers can use the command')
-
+    for x in maf:
+        await cmaf.set_permissions(x,send_messages=True,read_messages=True)
+    if may!=None:
+        await cm.set_permissions(may,send_messages=True,read_messages=True)
+    if nur!=None:
+        await cn.set_permissions(nur,send_messages=True,read_messages=True)
+    if v!=None:
+        await cvig.set_permissions(v,send_messages=True,read_messages=True)
+    for x in lpm:
+        await clp.set_permissions(x,send_messages=True,read_messages=True)
+    if fol!=None:
+        await cf.set_permissions(fol,send_messages=True,read_messages=True)
+    if(night_ct!=0):
+        for x in lpm:
+            await clp.set_permissions(x,send_messages=False,read_messages=True)
+    night_ct+=1
+    
 #day
 @client.command()
 async def day(ctx):
     member=ctx.message.author
     f=0
-    global eventst
-    global gamest
-    global Vill,vvill,vnit,cvill,cmaf,cn,cvig,cm,nt,mf,my,nu,vi,nt,nhel,kil,mcheck,nheal,vkill
+    global Vill,Org,Ch,killed,kil,nheal,mcheck,nhel,vkill,_def,gamest,eventst,vig_kc,mf,my,nu,vi,cvill,cgen,cmaf,corg,clp,cf,cm,cn,cvig,vvill,vnit,vded,sgame,vgen,maf,lpm,fol,may,v,night_ct,nur
     for x in member.roles:
         if x.id==Org_id:
             f=1
@@ -396,21 +353,14 @@ async def day(ctx):
                 kil.remove(x)
                 break
         for x in kil:
-            # for y in lpm:+
-            #     if x==y:
-            #         for z in lpm:
-            #             if z.id==nheal and z!=y:
-            #                 await cvill.send(f'{y.mention} has been killed!!!')
-            #                 await discord.Member.add_roles(y,killed)
-            #                 await discord.Member.remove_roles(y,Vill)
-            #                 for k in [cmaf,clp,cf,cm,cn,cvig]:
-            #                     await k.set_permissions(y,read_messages=False,send_messages=False)
             await cvill.send(f'{x.mention} has been killed!!!')
             await discord.Member.add_roles(x,killed)
             await discord.Member.remove_roles(x,Vill)
             await x.move_to(vded)
             for y in [cmaf,clp,cf,cm,cn,cvig]:
                 await y.set_permissions(x,read_messages=False,send_messages=False)
+            await vvill.set_permissions(x,speak=False)
+            await cvill.set_permissions(x,read_messages=True,send_messages=False)
         for x in Vill.members:
             await cvill.set_permissions(x,send_messages=True)
         kil.clear()
@@ -418,6 +368,18 @@ async def day(ctx):
         nheal=0
         nhel=None
         vkill=0   
+        for x in maf:
+            await cmaf.set_permissions(x,send_messages=False,read_messages=True)
+        if may!=None:
+            await cm.set_permissions(may,send_messages=False,read_messages=True)
+        if nur!=None:
+            await cn.set_permissions(nur,send_messages=False,read_messages=True)
+        if v!=None:
+            await cvig.set_permissions(v,send_messages=False,read_messages=True)
+        for x in lpm:
+            await clp.set_permissions(x,send_messages=False,read_messages=True)
+        if fol!=None:
+            await cf.set_permissions(fol,send_messages=False,read_messages=True)
     else:
         await ctx.send(f'{member.mention} , only organisers can use the command')
 
@@ -438,7 +400,8 @@ async def kill(ctx,mem:discord.ext.commands.MemberConverter):
             await discord.Member.add_roles(mem,killed)
             await discord.Member.remove_roles(mem,Vill)
             await mem.move_to(vded)
-            await vvill.set_permissions
+            await vvill.set_permissions(mem,speak=False)
+            await cvill.set_permissions(x,read_messages=True,send_messages=False)
             for y in [cmaf,clp,cf,cm,cn,cvig]:
                 await y.set_permissions(mem,read_messages=False,send_messages=False)     
         else:
@@ -513,11 +476,6 @@ async def dvot(ctx):
         mes=cvill.last_message 
         for x in range(0,i):
             await mes.add_reaction(emoji[x])
-        #await ctx.send('poll ends in 30 secs..')
-        # mes=cvill.last_message 
-        # for i in range(29,-1):
-        #     time.sleep(1)
-        #     await mes.edit(content=f'poll ends in {i} secs..')
 
 
 #mafia_kill
@@ -718,7 +676,7 @@ async def mafia(ctx,mem:discord.ext.commands.MemberConverter):
 #mayor_channel
 @client.command()
 async def mayor(ctx,mem:discord.ext.commands.MemberConverter):
-    global Vill,cmaf,cn,cvig,cm
+    global Vill,cmaf,cn,cvig,cm,may
     if ctx.channel.id != corg_id:
         await ctx.send("Cannot use this command in this channel.\n Head to organisers channel")
     else:
@@ -729,12 +687,12 @@ async def mayor(ctx,mem:discord.ext.commands.MemberConverter):
                         await y.set_permissions(mem,read_messages=True,send_messages=True)
             # else:
             #     await ctx.send(f'{x.mention} is not a villager')
-
+    may=mem
 
 #nurse_channel
 @client.command()
 async def nurse(ctx,mem:discord.ext.commands.MemberConverter):
-    global Vill,cmaf,cn,cvig,cm  
+    global Vill,cmaf,cn,cvig,cm,nur  
     if ctx.channel.id != corg_id:
         await ctx.send("Cannot use this command in this channel.\n Head to organisers channel")
     else:
@@ -745,12 +703,12 @@ async def nurse(ctx,mem:discord.ext.commands.MemberConverter):
                         await y.set_permissions(mem,read_messages=True,send_messages=True)
             # else:
             #     await ctx.send(f'{x.mention} is not a villager')
-
+    nur=mem
 
 #vigilante_channel
 @client.command()
 async def vigil(ctx,mem:discord.ext.commands.MemberConverter):
-    global Vill,cmaf,cn,cvig,cm
+    global Vill,cmaf,cn,cvig,cm,v
     if ctx.channel.id != corg_id:
         await ctx.send("Cannot use this command in this channel.\n Head to organisers channel")
     else:
@@ -759,8 +717,8 @@ async def vigil(ctx,mem:discord.ext.commands.MemberConverter):
                 for y in ctx.guild.text_channels:
                     if y.id==cvig_id:
                         await y.set_permissions(mem,read_messages=True,send_messages=True)
-            # else:
-            #     await ctx.send(f'{x.mention} is not a villager')
+    v=mem
+
 
 #vigilante_bullets
 @client.command()

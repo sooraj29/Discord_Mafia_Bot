@@ -10,6 +10,7 @@ from discord.ext.commands.bot import Bot
 from discord import Intents
 from dotenv import load_dotenv
 
+
 load_dotenv()
 TOKEN = os.getenv('TOKEN')
 GUILD = os.getenv('GUILD')
